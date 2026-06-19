@@ -1,0 +1,31 @@
+{
+  "module": {
+    "name": "entry_test",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:app_icon_tele_4_watch",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:app_icon_tele_4_watch",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ],
+    "deviceTypes": [
+      "phone",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "testRunner": {
+      "name": "OpenHarmonyTestRunner",
+      "srcPath": "testrunner"
+    }
+  }
+}

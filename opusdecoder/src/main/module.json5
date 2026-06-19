@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "opusdecoder",
+    "type": "har",
+    "deviceTypes": [
+      "phone",
+      "wearable"
+    ]
+  }
+}

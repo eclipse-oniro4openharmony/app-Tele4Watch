@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "tgcall",
+    "type": "har",
+    "deviceTypes": [
+      "wearable"
+    ]
+  }
+}

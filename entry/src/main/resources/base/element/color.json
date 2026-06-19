@@ -1,0 +1,564 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "text_primary",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "text_secondary",
+      "value": "#B0B0B0"
+    },
+    {
+      "name": "text_error_secondary",
+      "value": "#F5B7B7"
+    },
+    {
+      "name": "text_service_secondary",
+      "value": "#C2CAD2"
+    },
+    {
+      "name": "text_chat_list_service_preview",
+      "value": "#FF60B8FF"
+    },
+    {
+      "name": "text_media_placeholder",
+      "value": "#D9E1E8"
+    },
+    {
+      "name": "surface_transparent",
+      "value": "#00000000"
+    },
+    {
+      "name": "surface_card_shadow",
+      "value": "#80000000"
+    },
+    {
+      "name": "surface_elevation_shadow",
+      "value": "#33000000"
+    },
+    {
+      "name": "surface_dialog_background",
+      "value": "#2B2B2B"
+    },
+    {
+      "name": "surface_dialog_gradient_start",
+      "value": "#F24E5864"
+    },
+    {
+      "name": "surface_dialog_gradient_end",
+      "value": "#E6171B1F"
+    },
+    {
+      "name": "surface_dialog_scrim",
+      "value": "#00000066"
+    },
+    {
+      "name": "surface_error_panel_background",
+      "value": "#4A2323"
+    },
+    {
+      "name": "surface_page_header_background",
+      "value": "#D9151A21"
+    },
+    {
+      "name": "surface_media_badge_background",
+      "value": "#88000000"
+    },
+    {
+      "name": "surface_unread_badge_background",
+      "value": "#2E7CC3"
+    },
+    {
+      "name": "text_unread_badge",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "surface_unread_badge_background_muted",
+      "value": "#5F6B7A"
+    },
+    {
+      "name": "text_unread_badge_muted",
+      "value": "#D9E1E8"
+    },
+    {
+      "name": "surface_media_placeholder_background",
+      "value": "#4F20252E"
+    },
+    {
+      "name": "surface_media_play_overlay_background",
+      "value": "#73000000"
+    },
+    {
+      "name": "media_viewer_surface_background",
+      "value": "#000000"
+    },
+    {
+      "name": "media_viewer_loading_text",
+      "value": "#D8D8D8"
+    },
+    {
+      "name": "media_viewer_error_text",
+      "value": "#FFB3B3"
+    },
+    {
+      "name": "call_screen_indicator",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "call_screen_indicator_error",
+      "value": "#D75A5A"
+    },
+    {
+      "name": "call_screen_status",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "call_screen_status_error",
+      "value": "#F5B7B7"
+    },
+    {
+      "name": "call_screen_overlay_background",
+      "value": "#AA101010"
+    },
+    {
+      "name": "call_screen_control_fill",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "call_screen_control_fill_active",
+      "value": "#CCB63A3A"
+    },
+    {
+      "name": "call_screen_button_accept",
+      "value": "#29A35A"
+    },
+    {
+      "name": "call_screen_button_decline",
+      "value": "#D75A5A"
+    },
+    {
+      "name": "call_screen_button_end",
+      "value": "#D75A5A"
+    },
+    {
+      "name": "call_screen_button_mute_active",
+      "value": "#2E7CC3"
+    },
+    {
+      "name": "media_viewer_control_play_background",
+      "value": "#29A35A"
+    },
+    {
+      "name": "media_viewer_control_pause_background",
+      "value": "#D98A26"
+    },
+    {
+      "name": "media_viewer_control_stop_background",
+      "value": "#D94343"
+    },
+    {
+      "name": "button_destructive_background",
+      "value": "#6A1F1F"
+    },
+    {
+      "name": "button_disabled_secondary",
+      "value": "#4C515A"
+    },
+    {
+      "name": "message_composer_error_text",
+      "value": "#FFD2D2"
+    },
+    {
+      "name": "message_composer_error_background",
+      "value": "#7A3A2A"
+    },
+    {
+      "name": "message_composer_input_background",
+      "value": "#CC1F2733"
+    },
+    {
+      "name": "message_composer_placeholder_text",
+      "value": "#99D0D7E0"
+    },
+    {
+      "name": "bg_action_enabled",
+      "value": "#4A4A4A"
+    },
+    {
+      "name": "bg_action_disabled",
+      "value": "#4A4A4A"
+    },
+    {
+      "name": "surface_action_gradient_start",
+      "value": "#5A5A5A"
+    },
+    {
+      "name": "surface_action_gradient_middle",
+      "value": "#4A4A4A"
+    },
+    {
+      "name": "surface_action_gradient_end",
+      "value": "#3E3E3E"
+    },
+    {
+      "name": "surface_action_disabled_gradient_start",
+      "value": "#6A6A6A"
+    },
+    {
+      "name": "surface_action_disabled_gradient_middle",
+      "value": "#585858"
+    },
+    {
+      "name": "surface_action_disabled_gradient_end",
+      "value": "#464646"
+    },
+    {
+      "name": "surface_action_list_item_backdrop",
+      "value": "#342B2B2B"
+    },
+    {
+      "name": "surface_list_card_gradient_start",
+      "value": "#D94E5864"
+    },
+    {
+      "name": "surface_list_card_gradient_end",
+      "value": "#99171B1F"
+    },
+    {
+      "name": "surface_group_list_card_gradient_start",
+      "value": "#D9446283"
+    },
+    {
+      "name": "surface_group_list_card_gradient_end",
+      "value": "#99152035"
+    },
+    {
+      "name": "surface_channel_list_card_gradient_start",
+      "value": "#D94B7060"
+    },
+    {
+      "name": "surface_channel_list_card_gradient_end",
+      "value": "#99141F1A"
+    },
+    {
+      "name": "surface_chat_service_event_background",
+      "value": "#4A2A3038"
+    },
+    {
+      "name": "chat_message_bubble_outgoing_background",
+      "value": "#275E8D"
+    },
+    {
+      "name": "chat_message_bubble_incoming_background",
+      "value": "#2D323A"
+    },
+    {
+      "name": "chat_message_bubble_outgoing_gradient_start",
+      "value": "#D9488AC4"
+    },
+    {
+      "name": "chat_message_bubble_incoming_gradient_start",
+      "value": "#D9545B64"
+    },
+    {
+      "name": "chat_message_bubble_outgoing_gradient_end",
+      "value": "#99245179"
+    },
+    {
+      "name": "chat_message_bubble_incoming_gradient_end",
+      "value": "#B221262D"
+    },
+    {
+      "name": "chat_message_meta_outgoing",
+      "value": "#D7E7F8"
+    },
+    {
+      "name": "chat_message_meta_incoming",
+      "value": "#B0B0B0"
+    },
+    {
+      "name": "chat_message_shadow",
+      "value": "#2E000000"
+    },
+    {
+      "name": "chat_voice_note_waveform_error",
+      "value": "#E49A9A"
+    },
+    {
+      "name": "chat_voice_note_waveform_loading",
+      "value": "#6FA4C9"
+    },
+    {
+      "name": "chat_voice_note_waveform_played",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "chat_voice_note_waveform_current",
+      "value": "#6FC3FF"
+    },
+    {
+      "name": "chat_voice_note_waveform_outgoing",
+      "value": "#5E89AE"
+    },
+    {
+      "name": "chat_voice_note_waveform_incoming",
+      "value": "#647B8D"
+    },
+    {
+      "name": "chat_voice_note_button_background_error",
+      "value": "#7A3D4D"
+    },
+    {
+      "name": "chat_voice_note_button_background_loading",
+      "value": "#577D9E"
+    },
+    {
+      "name": "chat_voice_note_button_background_default",
+      "value": "#F3F8FD"
+    },
+    {
+      "name": "chat_voice_note_button_label_error",
+      "value": "#FFF5F5"
+    },
+    {
+      "name": "chat_voice_note_button_label_loading",
+      "value": "#E7F1FA"
+    },
+    {
+      "name": "chat_voice_note_button_label_default",
+      "value": "#234A6D"
+    },
+    {
+      "name": "chat_voice_note_timer_outgoing",
+      "value": "#D7E7F8"
+    },
+    {
+      "name": "chat_voice_note_timer_incoming",
+      "value": "#B0B0B0"
+    },
+    {
+      "name": "chat_voice_note_timer_error",
+      "value": "#FFD7D7"
+    },
+    {
+      "name": "chat_voice_note_unread_dot",
+      "value": "#6FC3FF"
+    },
+    {
+      "name": "message_recorder_phase_recording",
+      "value": "#29A35A"
+    },
+    {
+      "name": "message_recorder_phase_requesting_permission",
+      "value": "#C38B2E"
+    },
+    {
+      "name": "message_recorder_phase_busy",
+      "value": "#2E7CC3"
+    },
+    {
+      "name": "message_recorder_phase_error",
+      "value": "#A33A3A"
+    },
+    {
+      "name": "message_recorder_phase_idle",
+      "value": "#5F6B7A"
+    },
+    {
+      "name": "message_recorder_timer_caption",
+      "value": "#CCD8E6"
+    },
+    {
+      "name": "message_recorder_timer_panel_background",
+      "value": "#4D10161E"
+    },
+    {
+      "name": "message_recorder_led_recording",
+      "value": "#FF3B30"
+    },
+    {
+      "name": "message_recorder_led_recording_glow",
+      "value": "#B3FF3B30"
+    },
+    {
+      "name": "message_recorder_error_text",
+      "value": "#FFE1E1"
+    },
+    {
+      "name": "message_recorder_error_background",
+      "value": "#66A33A3A"
+    },
+    {
+      "name": "surface_auth_qr_fill",
+      "value": "#1F5D34"
+    },
+    {
+      "name": "surface_auth_qr_gradient_start",
+      "value": "#3F8A58"
+    },
+    {
+      "name": "surface_auth_qr_gradient_middle",
+      "value": "#1F5D34"
+    },
+    {
+      "name": "surface_auth_qr_gradient_end",
+      "value": "#174728"
+    },
+    {
+      "name": "surface_auth_phone_fill",
+      "value": "#21506B"
+    },
+    {
+      "name": "surface_auth_phone_gradient_start",
+      "value": "#457FA7"
+    },
+    {
+      "name": "surface_auth_phone_gradient_middle",
+      "value": "#21506B"
+    },
+    {
+      "name": "surface_auth_phone_gradient_end",
+      "value": "#193D52"
+    },
+    {
+      "name": "surface_profile_contacts_fill",
+      "value": "#3E7B59"
+    },
+    {
+      "name": "surface_profile_contacts_gradient_start",
+      "value": "#5AA37A"
+    },
+    {
+      "name": "surface_profile_contacts_gradient_middle",
+      "value": "#3E7B59"
+    },
+    {
+      "name": "surface_profile_contacts_gradient_end",
+      "value": "#2F6346"
+    },
+    {
+      "name": "surface_profile_chats_fill",
+      "value": "#2E7CC3"
+    },
+    {
+      "name": "contact_status_online",
+      "value": "#58A4EA"
+    },
+    {
+      "name": "surface_profile_chats_gradient_start",
+      "value": "#58A4EA"
+    },
+    {
+      "name": "surface_profile_chats_gradient_middle",
+      "value": "#2E7CC3"
+    },
+    {
+      "name": "surface_profile_chats_gradient_end",
+      "value": "#235E94"
+    },
+    {
+      "name": "surface_profile_call_fill",
+      "value": "#2F8F4E"
+    },
+    {
+      "name": "surface_profile_call_gradient_start",
+      "value": "#4FBE6E"
+    },
+    {
+      "name": "surface_profile_call_gradient_middle",
+      "value": "#2F8F4E"
+    },
+    {
+      "name": "surface_profile_call_gradient_end",
+      "value": "#236E3B"
+    },
+    {
+      "name": "surface_profile_logout_fill",
+      "value": "#B63A3A"
+    },
+    {
+      "name": "surface_profile_logout_gradient_start",
+      "value": "#D85A5A"
+    },
+    {
+      "name": "surface_profile_logout_gradient_middle",
+      "value": "#B63A3A"
+    },
+    {
+      "name": "surface_profile_logout_gradient_end",
+      "value": "#8F2E2E"
+    },
+    {
+      "name": "contact_avatar_fallback_background",
+      "value": "#4C6A92"
+    },
+    {
+      "name": "contact_avatar_palette_0_gradient_start",
+      "value": "#4A7CFF"
+    },
+    {
+      "name": "contact_avatar_palette_0_gradient_end",
+      "value": "#7F5AF0"
+    },
+    {
+      "name": "contact_avatar_palette_1_gradient_start",
+      "value": "#23A6D5"
+    },
+    {
+      "name": "contact_avatar_palette_1_gradient_end",
+      "value": "#2FD8C3"
+    },
+    {
+      "name": "contact_avatar_palette_2_gradient_start",
+      "value": "#43C97A"
+    },
+    {
+      "name": "contact_avatar_palette_2_gradient_end",
+      "value": "#96E072"
+    },
+    {
+      "name": "contact_avatar_palette_3_gradient_start",
+      "value": "#F2994A"
+    },
+    {
+      "name": "contact_avatar_palette_3_gradient_end",
+      "value": "#F2C94C"
+    },
+    {
+      "name": "contact_avatar_palette_4_gradient_start",
+      "value": "#A259FF"
+    },
+    {
+      "name": "contact_avatar_palette_4_gradient_end",
+      "value": "#EA5CA5"
+    },
+    {
+      "name": "contact_avatar_palette_5_gradient_start",
+      "value": "#FF5C8A"
+    },
+    {
+      "name": "contact_avatar_palette_5_gradient_end",
+      "value": "#FF9966"
+    },
+    {
+      "name": "contact_avatar_palette_6_gradient_start",
+      "value": "#4C8BF5"
+    },
+    {
+      "name": "contact_avatar_palette_6_gradient_end",
+      "value": "#56CCF2"
+    },
+    {
+      "name": "contact_avatar_palette_7_gradient_start",
+      "value": "#36B37E"
+    },
+    {
+      "name": "contact_avatar_palette_7_gradient_end",
+      "value": "#6FCF97"
+    }
+  ]
+}

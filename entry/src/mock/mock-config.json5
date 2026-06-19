@@ -1,0 +1,5 @@
+{
+  "bridge/Index": {
+    "source": "src/mock/bridge.mock.ets"
+  }
+}

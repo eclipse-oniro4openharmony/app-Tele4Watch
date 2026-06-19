@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "bridge",
+    "type": "har",
+    "deviceTypes": [
+      "phone",
+      "wearable"
+    ]
+  }
+}

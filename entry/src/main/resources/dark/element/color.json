@@ -1,0 +1,72 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#000000"
+    },
+    {
+      "name": "text_chat_list_service_preview",
+      "value": "#FF60B8FF"
+    },
+    {
+      "name": "surface_unread_badge_background",
+      "value": "#2E7CC3"
+    },
+    {
+      "name": "text_unread_badge",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "surface_unread_badge_background_muted",
+      "value": "#5F6B7A"
+    },
+    {
+      "name": "text_unread_badge_muted",
+      "value": "#D9E1E8"
+    },
+    {
+      "name": "call_screen_indicator",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "call_screen_indicator_error",
+      "value": "#D75A5A"
+    },
+    {
+      "name": "call_screen_status",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "call_screen_status_error",
+      "value": "#F5B7B7"
+    },
+    {
+      "name": "call_screen_overlay_background",
+      "value": "#AA101010"
+    },
+    {
+      "name": "call_screen_control_fill",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "call_screen_control_fill_active",
+      "value": "#CCB63A3A"
+    },
+    {
+      "name": "call_screen_button_accept",
+      "value": "#29A35A"
+    },
+    {
+      "name": "call_screen_button_decline",
+      "value": "#D75A5A"
+    },
+    {
+      "name": "call_screen_button_end",
+      "value": "#D75A5A"
+    },
+    {
+      "name": "call_screen_button_mute_active",
+      "value": "#2E7CC3"
+    }
+  ]
+}

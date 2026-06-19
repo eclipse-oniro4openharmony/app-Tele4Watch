@@ -1,0 +1,9 @@
+{
+  "name": "opusdecoder",
+  "version": "1.0.0",
+  "description": "Native Ogg Opus decoder module for Telegram Watch.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "",
+  "dependencies": {}
+}

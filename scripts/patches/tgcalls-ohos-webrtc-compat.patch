@@ -1,0 +1,481 @@
+diff --git a/tgcalls/EncryptedConnection.cpp b/tgcalls/EncryptedConnection.cpp
+index d6a464d..0026458 100644
+--- a/tgcalls/EncryptedConnection.cpp
++++ b/tgcalls/EncryptedConnection.cpp
+@@ -77,7 +77,7 @@ rtc::CopyOnWriteBuffer SerializeRawMessageWithSeq(
+     writer.WriteUInt32(seq);
+     writer.WriteUInt8(kCustomId);
+     writer.WriteUInt32((uint32_t)message.size());
+-    writer.WriteBytes((const uint8_t *)message.data(), message.size());
++    writer.WriteBytes(reinterpret_cast<const char *>(message.data()), message.size());
+ 
+     auto result = rtc::CopyOnWriteBuffer();
+     result.AppendData(writer.Data(), writer.Length());
+@@ -487,9 +487,7 @@ auto EncryptedConnection::processPacket(
+ 
+     auto currentSeq = packetSeq;
+     auto currentCounter = CounterFromSeq(currentSeq);
+-    rtc::ByteBufferReader reader(rtc::ArrayView<const uint8_t>(
+-        reinterpret_cast<const uint8_t *>(fullBuffer.data() + 4), // Skip seq.
+-        fullBuffer.size() - 4));
++    rtc::ByteBufferReader reader(reinterpret_cast<const char *>(fullBuffer.data() + 4), fullBuffer.size() - 4);
+ 
+     auto result = absl::optional<DecryptedPacket>();
+     while (true) {
+@@ -573,9 +571,7 @@ auto EncryptedConnection::processRawPacket(
+ 
+     auto currentSeq = packetSeq;
+     auto currentCounter = CounterFromSeq(currentSeq);
+-    rtc::ByteBufferReader reader(rtc::ArrayView<const uint8_t>(
+-        reinterpret_cast<const uint8_t *>(fullBuffer.data() + 4), // Skip seq.
+-        fullBuffer.size() - 4));
++    rtc::ByteBufferReader reader(reinterpret_cast<const char *>(fullBuffer.data() + 4), fullBuffer.size() - 4);
+ 
+     auto result = absl::optional<DecryptedRawPacket>();
+     while (true) {
+diff --git a/tgcalls/Instance.h b/tgcalls/Instance.h
+index 5968b24..1475e03 100644
+--- a/tgcalls/Instance.h
++++ b/tgcalls/Instance.h
+@@ -19,8 +19,10 @@ namespace webrtc {
+ class VideoFrame;
+ class AudioDeviceModule;
+ class TaskQueueFactory;
++#if !defined(TGCALL_WEBRTC_SCOPED_REFPTR_ALIAS)
+ template <class T>
+ class scoped_refptr;
++#endif
+ } // namespace webrtc
+ 
+ namespace tgcalls {
+diff --git a/tgcalls/Message.cpp b/tgcalls/Message.cpp
+index b4a3b88..22df37d 100644
+--- a/tgcalls/Message.cpp
++++ b/tgcalls/Message.cpp
+@@ -195,7 +195,7 @@ void Serialize(rtc::ByteBufferWriter &to, const rtc::CopyOnWriteBuffer &from, bo
+ 		assert(from.size() <= UINT16_MAX);
+ 		to.WriteUInt16(from.size());
+ 	}
+-	to.WriteBytes(reinterpret_cast<const uint8_t*>(from.cdata()), from.size());
++		to.WriteBytes(reinterpret_cast<const char*>(from.cdata()), from.size());
+ }
+ 
+ bool Deserialize(rtc::CopyOnWriteBuffer &to, rtc::ByteBufferReader &from, bool singleMessagePacket) {
+@@ -396,7 +396,7 @@ absl::optional<rtc::CopyOnWriteBuffer> DeserializeRawMessage(
+ 
+     rtc::CopyOnWriteBuffer result;
+     result.SetSize(length);
+-    if (!reader.ReadBytes(rtc::ArrayView<uint8_t>((uint8_t *)result.MutableData(), result.size()))) {
++    if (!reader.ReadBytes(reinterpret_cast<char *>(result.MutableData()), result.size())) {
+         return absl::nullopt;
+     }
+ 
+diff --git a/tgcalls/platform/fake/FakeInterface.cpp b/tgcalls/platform/fake/FakeInterface.cpp
+index ac4d157..5a411e8 100644
+--- a/tgcalls/platform/fake/FakeInterface.cpp
++++ b/tgcalls/platform/fake/FakeInterface.cpp
+@@ -1,17 +1,15 @@
+ #include "FakeInterface.h"
+ 
+-#include "api/video_codecs/builtin_video_encoder_factory.h"
+-#include "api/video_codecs/builtin_video_decoder_factory.h"
+ //#include "api/video_track_source_proxy.h"
+ 
+ namespace tgcalls {
+ 
+ std::unique_ptr<webrtc::VideoEncoderFactory> FakeInterface::makeVideoEncoderFactory(bool preferHardwareEncoding, bool isScreencast) {
+-  return webrtc::CreateBuiltinVideoEncoderFactory();
++  return nullptr;
+ }
+ 
+ std::unique_ptr<webrtc::VideoDecoderFactory> FakeInterface::makeVideoDecoderFactory() {
+-  return webrtc::CreateBuiltinVideoDecoderFactory();
++  return nullptr;
+ }
+ 
+ webrtc::scoped_refptr<webrtc::VideoTrackSourceInterface> FakeInterface::makeVideoSource(rtc::Thread *signalingThread,
+diff --git a/tgcalls/v2/InstanceV2ReferenceImpl.cpp b/tgcalls/v2/InstanceV2ReferenceImpl.cpp
+index 09301f1..3353768 100644
+--- a/tgcalls/v2/InstanceV2ReferenceImpl.cpp
++++ b/tgcalls/v2/InstanceV2ReferenceImpl.cpp
+@@ -45,19 +45,18 @@
+ 
+ #include "AudioFrame.h"
+ #include "ThreadLocalObject.h"
+-#include "Manager.h"
+-#include "NetworkManager.h"
+ #include "VideoCaptureInterfaceImpl.h"
+ #include "platform/PlatformInterface.h"
+ #include "LogSinkImpl.h"
+ #include "CodecSelectHelper.h"
+ #include "AudioDeviceHelper.h"
+ #include "SignalingEncryption.h"
++#if !defined(TGCALL_WEBRTC_LEGACY_MEDIA_DEPS)
+ #include "ReflectorRelayPortFactory.h"
++#endif
+ #include "v2/SignalingConnection.h"
+ #include "v2/ExternalSignalingConnection.h"
+ #include "v2/SignalingSctpConnection.h"
+-#include "v2/ReflectorRelayPortFactory.h"
+ #ifdef WEBRTC_IOS
+ #include "platform/darwin/iOS/tgcalls_audio_device_module_ios.h"
+ #endif
+@@ -459,18 +458,34 @@ public:
+         peerConnectionFactoryDependencies.task_queue_factory = webrtc::CreateDefaultTaskQueueFactory();
+         peerConnectionFactoryDependencies.network_monitor_factory = PlatformInterface::SharedInstance()->createNetworkMonitorFactory();
+ 
++#if defined(TGCALL_WEBRTC_LEGACY_MEDIA_DEPS)
++        cricket::MediaEngineDependencies mediaDependencies;
++        mediaDependencies.task_queue_factory = peerConnectionFactoryDependencies.task_queue_factory.get();
++        mediaDependencies.adm = _audioDeviceModule;
++
++        webrtc::AudioProcessingBuilder builder;
++        mediaDependencies.audio_processing = builder.Create();
++
++        mediaDependencies.audio_encoder_factory = webrtc::CreateAudioEncoderFactory<webrtc::AudioEncoderOpus>();
++        mediaDependencies.audio_decoder_factory = webrtc::CreateAudioDecoderFactory<webrtc::AudioDecoderOpus>();
++        mediaDependencies.video_encoder_factory = PlatformInterface::SharedInstance()->makeVideoEncoderFactory(true);
++        mediaDependencies.video_decoder_factory = PlatformInterface::SharedInstance()->makeVideoDecoderFactory();
++
++        peerConnectionFactoryDependencies.media_engine = cricket::CreateMediaEngine(std::move(mediaDependencies));
++#else
+         peerConnectionFactoryDependencies.adm = _audioDeviceModule;
+-        
+-        webrtc:: AudioProcessingBuilder builder;
++
++        webrtc::AudioProcessingBuilder builder;
+         peerConnectionFactoryDependencies.audio_processing = builder.Create();
+-        
++
+         peerConnectionFactoryDependencies.audio_encoder_factory = webrtc::CreateAudioEncoderFactory<webrtc::AudioEncoderOpus>();
+         peerConnectionFactoryDependencies.audio_decoder_factory = webrtc::CreateAudioDecoderFactory<webrtc::AudioDecoderOpus>();
+ 
+         peerConnectionFactoryDependencies.video_encoder_factory = PlatformInterface::SharedInstance()->makeVideoEncoderFactory(true);
+         peerConnectionFactoryDependencies.video_decoder_factory = PlatformInterface::SharedInstance()->makeVideoDecoderFactory();
+-        
++
+         webrtc::EnableMedia(peerConnectionFactoryDependencies);
++#endif
+ 
+         peerConnectionFactoryDependencies.event_log_factory = std::make_unique<webrtc::RtcEventLogFactory>(peerConnectionFactoryDependencies.task_queue_factory.get());
+ 
+@@ -632,9 +647,12 @@ public:
+         _networkMonitorFactory = PlatformInterface::SharedInstance()->createNetworkMonitorFactory();
+         _socketFactory = std::make_unique<rtc::BasicPacketSocketFactory>(_threads->getNetworkThread()->socketserver());
+         _networkManager = std::make_unique<rtc::BasicNetworkManager>(_networkMonitorFactory.get(), _threads->getNetworkThread()->socketserver());
++#if defined(TGCALL_WEBRTC_LEGACY_MEDIA_DEPS)
++        auto portAllocator = std::make_unique<cricket::BasicPortAllocator>(_networkManager.get(), _socketFactory.get());
++#else
+         _relayPortFactory = std::make_unique<ReflectorRelayPortFactory>(_rtcServers, false, 0, _threads->getNetworkThread()->socketserver());
+-        
+         auto portAllocator = std::make_unique<cricket::BasicPortAllocator>(_networkManager.get(), _socketFactory.get(), nullptr, _relayPortFactory.get());
++#endif
+         peerConnectionDependencies.allocator = std::move(portAllocator);
+ 
+         webrtc::PeerConnectionInterface::RTCConfiguration peerConnectionConfiguration;
+diff --git a/tgcalls/v2/NativeNetworkingImpl.cpp b/tgcalls/v2/NativeNetworkingImpl.cpp
+index 769bd23..2e39d92 100644
+--- a/tgcalls/v2/NativeNetworkingImpl.cpp
++++ b/tgcalls/v2/NativeNetworkingImpl.cpp
+@@ -78,9 +78,7 @@ class WrappedAsyncPacketSocket : public rtc::AsyncPacketSocket {
+ public:
+     WrappedAsyncPacketSocket(std::unique_ptr<rtc::AsyncPacketSocket> &&wrappedSocket) :
+     _wrappedSocket(std::move(wrappedSocket)) {
+-        _wrappedSocket->RegisterReceivedPacketCallback([this](AsyncPacketSocket *socket, rtc::ReceivedPacket const &packet) {
+-            this->onReadPacket(packet);
+-        });
++        _wrappedSocket->SignalReadPacket.connect(this, &WrappedAsyncPacketSocket::onReadPacket);
+         _wrappedSocket->SignalSentPacket.connect(this, &WrappedAsyncPacketSocket::onSentPacket);
+         _wrappedSocket->SignalReadyToSend.connect(this, &WrappedAsyncPacketSocket::onReadyToSend);
+         _wrappedSocket->SignalAddressReady.connect(this, &WrappedAsyncPacketSocket::onAddressReady);
+@@ -89,7 +87,7 @@ public:
+     }
+     
+     virtual ~WrappedAsyncPacketSocket() override {
+-        _wrappedSocket->DeregisterReceivedPacketCallback();
++        _wrappedSocket->SignalReadPacket.disconnect(this);
+         _wrappedSocket->SignalSentPacket.disconnect(this);
+         _wrappedSocket->SignalReadyToSend.disconnect(this);
+         _wrappedSocket->SignalAddressReady.disconnect(this);
+@@ -143,8 +141,12 @@ public:
+     }
+     
+ private:
+-    void onReadPacket(rtc::ReceivedPacket const &packet) {
+-        NotifyPacketReceived(packet);
++    void onReadPacket(AsyncPacketSocket *socket,
++                      const char* data,
++                      size_t size,
++                      const rtc::SocketAddress& remote_addr,
++                      const int64_t& packet_time_us) {
++        SignalReadPacket.emit(this, data, size, remote_addr, packet_time_us);
+     }
+     
+     void onSentPacket(AsyncPacketSocket *socket, const rtc::SentPacket &packet) {
+@@ -661,9 +663,7 @@ void NativeNetworkingImpl::resetDtlsSrtpTransport() {
+ 
+     _transportChannel->SignalCandidateGathered.connect(this, &NativeNetworkingImpl::candidateGathered);
+     _transportChannel->SignalIceTransportStateChanged.connect(this, &NativeNetworkingImpl::transportStateChanged);
+-    _transportChannel->SetCandidatePairChangeCallback([this](cricket::CandidatePairChangeEvent const &event) {
+-        this->candidatePairChanged(event);
+-    });
++    _transportChannel->SignalCandidatePairChanged.connect(this, &NativeNetworkingImpl::candidatePairChanged);
+     _transportChannel->SignalNetworkRouteChanged.connect(this, &NativeNetworkingImpl::transportRouteChanged);
+ 
+     if (getCustomParameterBool(_customParameters, "network_use_mtproto")) {
+diff --git a/tgcalls/v2/RawTcpSocket.cpp b/tgcalls/v2/RawTcpSocket.cpp
+index c4572d8..bf46e38 100644
+--- a/tgcalls/v2/RawTcpSocket.cpp
++++ b/tgcalls/v2/RawTcpSocket.cpp
+@@ -87,24 +87,23 @@ int RawTcpSocket::Send(const void* pv,
+   return static_cast<int>(cb);
+ }
+ 
+-size_t RawTcpSocket::ProcessInput(rtc::ArrayView<const uint8_t> data) {
++void RawTcpSocket::ProcessInput(char* data, size_t* len) {
+   SocketAddress remote_addr(GetRemoteAddress());
+ 
+-  size_t processed_bytes = 0;
+   while (true) {
+-    size_t bytes_left = data.size() - processed_bytes;
+-    if (bytes_left < 4)
+-      return processed_bytes;
+-
+-    uint32_t pkt_len = rtc::GetLE32(data.data() + processed_bytes);
+-    if (bytes_left < 4 + pkt_len)
+-      return processed_bytes;
+-
+-    rtc::ReceivedPacket received_packet(
+-        data.subview(processed_bytes + 4, pkt_len), remote_addr,
+-        webrtc::Timestamp::Micros(rtc::TimeMicros()));
+-    NotifyPacketReceived(received_packet);
+-    processed_bytes += 4 + pkt_len;
++    if (*len < 4)
++      return;
++
++    uint32_t pkt_len = rtc::GetLE32(reinterpret_cast<const uint8_t*>(data));
++    if (*len < 4 + pkt_len)
++      return;
++
++    SignalReadPacket(this, data + 4, pkt_len, remote_addr, TimeMicros());
++
++    *len -= 4 + pkt_len;
++    if (*len > 0) {
++      memmove(data, data + 4 + pkt_len, *len);
++    }
+   }
+ }
+ 
+diff --git a/tgcalls/v2/RawTcpSocket.h b/tgcalls/v2/RawTcpSocket.h
+index f5a3cf1..8d2da72 100644
+--- a/tgcalls/v2/RawTcpSocket.h
++++ b/tgcalls/v2/RawTcpSocket.h
+@@ -42,7 +42,7 @@ class RawTcpSocket : public AsyncTCPSocketBase {
+   int Send(const void* pv,
+            size_t cb,
+            const rtc::PacketOptions& options) override;
+-  size_t ProcessInput(rtc::ArrayView<const uint8_t>) override;
++  void ProcessInput(char* data, size_t* len) override;
+ 
+  private:
+   bool did_send_mtproto_prologue_ = false;
+diff --git a/tgcalls/v2/ReflectorPort.cpp b/tgcalls/v2/ReflectorPort.cpp
+index 2004c43..02c2523 100644
+--- a/tgcalls/v2/ReflectorPort.cpp
++++ b/tgcalls/v2/ReflectorPort.cpp
+@@ -317,7 +317,7 @@ void ReflectorPort::SendReflectorHello() {
+ 
+     if (server_address_.proto == cricket::PROTO_TCP) {
+         rtc::ByteBufferWriter bufferWriter;
+-        bufferWriter.WriteBytes((const uint8_t *)peer_tag_.data(), peer_tag_.size());
++        bufferWriter.WriteBytes(reinterpret_cast<const char*>(peer_tag_.data()), peer_tag_.size());
+         bufferWriter.WriteUInt32(0);
+         
+         while (bufferWriter.Length() % 4 != 0) {
+@@ -328,7 +328,7 @@ void ReflectorPort::SendReflectorHello() {
+         Send(bufferWriter.Data(), bufferWriter.Length(), options);
+     } else {
+         rtc::ByteBufferWriter bufferWriter;
+-        bufferWriter.WriteBytes((const uint8_t *)peer_tag_.data(), peer_tag_.size());
++        bufferWriter.WriteBytes(reinterpret_cast<const char*>(peer_tag_.data()), peer_tag_.size());
+         for (int i = 0; i < 12; i++) {
+             bufferWriter.WriteUInt8(0xffu);
+         }
+@@ -397,9 +397,7 @@ bool ReflectorPort::CreateReflectorClientSocket() {
+ 
+     if (!SharedSocket()) {
+         // If socket is shared, AllocationSequence will receive the packet.
+-        socket_->RegisterReceivedPacketCallback([this](rtc::AsyncPacketSocket *socket, const rtc::ReceivedPacket &packet) {
+-            this->OnReadPacket(socket, packet);
+-        });
++        socket_->SignalReadPacket.connect(this, &ReflectorPort::OnReadPacket);
+     }
+ 
+     socket_->SignalReadyToSend.connect(this, &ReflectorPort::OnReadyToSend);
+@@ -632,15 +630,15 @@ int ReflectorPort::SendTo(const void* data,
+     }
+     
+     targetPeerTag.AppendData(peer_tag_.data(), peer_tag_.size() - 4);
+-    targetPeerTag.AppendData((uint8_t *)&resolvedPeerTag, 4);
++    targetPeerTag.AppendData(reinterpret_cast<const char*>(&resolvedPeerTag), 4);
+     
+     rtc::ByteBufferWriter bufferWriter;
+-    bufferWriter.WriteBytes((const uint8_t *)targetPeerTag.data(), targetPeerTag.size());
++    bufferWriter.WriteBytes(reinterpret_cast<const char*>(targetPeerTag.data()), targetPeerTag.size());
+     
+-    bufferWriter.WriteBytes((const uint8_t *)&randomTag_, 4);
++    bufferWriter.WriteBytes(reinterpret_cast<const char*>(&randomTag_), 4);
+     
+     bufferWriter.WriteUInt32((uint32_t)size);
+-    bufferWriter.WriteBytes((const uint8_t *)data, size);
++    bufferWriter.WriteBytes(reinterpret_cast<const char*>(data), size);
+     
+     while (bufferWriter.Length() % 4 != 0) {
+         bufferWriter.WriteUInt8(0);
+@@ -661,17 +659,17 @@ bool ReflectorPort::CanHandleIncomingPacketsFrom(
+                                                      return server_address_.address == addr;
+                                                  }
+ 
+-bool ReflectorPort::HandleIncomingPacket(rtc::AsyncPacketSocket* socket, rtc::ReceivedPacket const &packet) {
++bool ReflectorPort::HandleIncomingPacket(rtc::AsyncPacketSocket* socket,
++                                         const char* data,
++                                         size_t size,
++                                         const rtc::SocketAddress& remote_addr,
++                                         int64_t packet_time_us) {
+     if (socket != socket_) {
+         // The packet was received on a shared socket after we've allocated a new
+         // socket for this REFLECTOR port.
+         return false;
+     }
+-    
+-    uint8_t const *data = packet.payload().begin();
+-    size_t size = packet.payload().size();
+-    rtc::SocketAddress const &remote_addr = packet.source_address();
+-    auto packet_time_us = packet.arrival_time();
++    const uint8_t* packetData = reinterpret_cast<const uint8_t*>(data);
+     
+     // This is to guard against a STUN response from previous server after
+     // alternative server redirection. TODO(guoweis): add a unit test for this
+@@ -700,7 +698,7 @@ bool ReflectorPort::HandleIncomingPacket(rtc::AsyncPacketSocket* socket, rtc::Re
+     }
+ 
+     uint8_t receivedPeerTag[16];
+-    memcpy(receivedPeerTag, data, 16);
++    memcpy(receivedPeerTag, packetData, 16);
+ 
+     if (memcmp(receivedPeerTag, peer_tag_.data(), 16 - 4) != 0) {
+         RTC_LOG(LS_WARNING)
+@@ -738,7 +736,7 @@ bool ReflectorPort::HandleIncomingPacket(rtc::AsyncPacketSocket* socket, rtc::Re
+         bool isSpecialPacket = false;
+         if (size >= 16 + 12) {
+             uint8_t specialTag[12];
+-            memcpy(specialTag, data + 16, 12);
++            memcpy(specialTag, packetData + 16, 12);
+ 
+             uint8_t expectedSpecialTag[12];
+             memset(expectedSpecialTag, 0xff, 12);
+@@ -750,10 +748,10 @@ bool ReflectorPort::HandleIncomingPacket(rtc::AsyncPacketSocket* socket, rtc::Re
+ 
+         if (!isSpecialPacket) {
+             uint32_t senderTag = 0;
+-            memcpy(&senderTag, data + 16, 4);
++            memcpy(&senderTag, packetData + 16, 4);
+ 
+             uint32_t dataSize = 0;
+-            memcpy(&dataSize, data + 16 + 4, 4);
++            memcpy(&dataSize, packetData + 16 + 4, 4);
+             dataSize = be32toh(dataSize);
+             if (dataSize > size - 16 - 4 - 4) {
+                 RTC_LOG(LS_WARNING)
+@@ -764,11 +762,12 @@ bool ReflectorPort::HandleIncomingPacket(rtc::AsyncPacketSocket* socket, rtc::Re
+                 rtc::SocketAddress candidateAddress(ipFormat, server_address_.address.port());
+                 candidateAddress.SetResolvedIP(server_address_.address.ipaddr());
+                 
+-                int64_t packet_timestamp = -1;
+-                if (packet_time_us.has_value()) {
+-                    packet_timestamp = packet_time_us->us_or(-1);
+-                }
+-                DispatchPacket(rtc::ReceivedPacket::CreateFromLegacy(data + 16 + 4 + 4, dataSize, packet_timestamp, candidateAddress), cricket::ProtocolType::PROTO_UDP);
++                DispatchPacket(
++                    data + 16 + 4 + 4,
++                    dataSize,
++                    candidateAddress,
++                    packet_time_us,
++                    cricket::ProtocolType::PROTO_UDP);
+             }
+         }
+     }
+@@ -776,8 +775,12 @@ bool ReflectorPort::HandleIncomingPacket(rtc::AsyncPacketSocket* socket, rtc::Re
+     return true;
+ }
+ 
+-void ReflectorPort::OnReadPacket(rtc::AsyncPacketSocket* socket, rtc::ReceivedPacket const &packet) {
+-    HandleIncomingPacket(socket, packet);
++void ReflectorPort::OnReadPacket(rtc::AsyncPacketSocket* socket,
++                                 const char* data,
++                                 size_t size,
++                                 const rtc::SocketAddress& remote_addr,
++                                 const int64_t& packet_time_us) {
++    HandleIncomingPacket(socket, data, size, remote_addr, packet_time_us);
+ }
+ 
+ void ReflectorPort::OnSentPacket(rtc::AsyncPacketSocket* socket,
+@@ -897,11 +900,15 @@ bool ReflectorPort::AllowedReflectorPort(int port) {
+     return true;
+ }
+ 
+-void ReflectorPort::DispatchPacket(rtc::ReceivedPacket const &packet, cricket::ProtocolType proto) {
+-    if (cricket::Connection* conn = GetConnection(packet.source_address())) {
+-        conn->OnReadPacket(packet);
++void ReflectorPort::DispatchPacket(const char* data,
++                                   size_t size,
++                                   const rtc::SocketAddress& remote_addr,
++                                   int64_t packet_time_us,
++                                   cricket::ProtocolType proto) {
++    if (cricket::Connection* conn = GetConnection(remote_addr)) {
++        conn->OnReadPacket(data, size, packet_time_us);
+     } else {
+-        Port::OnReadPacket(packet, proto);
++        Port::OnReadPacket(data, size, remote_addr, proto);
+     }
+ }
+ 
+diff --git a/tgcalls/v2/ReflectorPort.h b/tgcalls/v2/ReflectorPort.h
+index cbf4fe2..ddb86d1 100644
+--- a/tgcalls/v2/ReflectorPort.h
++++ b/tgcalls/v2/ReflectorPort.h
+@@ -122,11 +122,18 @@ public:
+     int GetOption(rtc::Socket::Option opt, int* value) override;
+     int GetError() override;
+     
+-    virtual bool HandleIncomingPacket(rtc::AsyncPacketSocket* socket,
+-                                      const rtc::ReceivedPacket& packet) override;
++    bool HandleIncomingPacket(rtc::AsyncPacketSocket* socket,
++                              const char* data,
++                              size_t size,
++                              const rtc::SocketAddress& remote_addr,
++                              int64_t packet_time_us) override;
+     bool CanHandleIncomingPacketsFrom(
+                                       const rtc::SocketAddress& addr) const override;
+-    virtual void OnReadPacket(rtc::AsyncPacketSocket* socket, rtc::ReceivedPacket const &packet);
++    virtual void OnReadPacket(rtc::AsyncPacketSocket* socket,
++                              const char* data,
++                              size_t size,
++                              const rtc::SocketAddress& remote_addr,
++                              const int64_t& packet_time_us);
+     
+     void OnSentPacket(rtc::AsyncPacketSocket* socket,
+                       const rtc::SentPacket& sent_packet) override;
+@@ -198,7 +205,11 @@ private:
+     
+     void OnAllocateError(int error_code, const std::string& reason);
+     
+-    void DispatchPacket(rtc::ReceivedPacket const &packet, cricket::ProtocolType proto);
++    void DispatchPacket(const char* data,
++                        size_t size,
++                        const rtc::SocketAddress& remote_addr,
++                        int64_t packet_time_us,
++                        cricket::ProtocolType proto);
+     
+     int Send(const void* data, size_t size, const rtc::PacketOptions& options);
+     

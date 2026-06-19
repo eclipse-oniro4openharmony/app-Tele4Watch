@@ -1,0 +1,19 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/PhoneLogin",
+    "pages/CodeLogin",
+    "pages/QrLogin",
+    "pages/Profile",
+    "pages/UserProfile",
+    "pages/Contacts",
+    "pages/Logout",
+    "pages/Chats",
+    "pages/ChatDetails",
+    "pages/QuickReplyPicker",
+    "pages/CallScreen",
+    "pages/ComposeMessage",
+    "pages/MessageRecorder",
+    "pages/MediaViewer"
+  ]
+}
