@@ -1,0 +1,9 @@
+{
+  "name": "bridge",
+  "version": "1.0.0",
+  "description": "TDLib native bridge module for Telegram Watch.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "",
+  "dependencies": {}
+}

@@ -1,0 +1,1136 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Telegram4Watch entry module"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Telegram4Watch wearable shell"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Tele4Watch"
+    },
+    {
+      "name": "permission_reason_microphone",
+      "value": "Microphone access is required to record and send voice notes."
+    },
+    {
+      "name": "common_error_label",
+      "value": "Error"
+    },
+    {
+      "name": "common_unknown_label",
+      "value": "?"
+    },
+    {
+      "name": "common_value_placeholder",
+      "value": "-"
+    },
+    {
+      "name": "common_time_placeholder",
+      "value": "--:--"
+    },
+    {
+      "name": "common_time_zero_short",
+      "value": "0:00"
+    },
+    {
+      "name": "common_error_symbol",
+      "value": "!"
+    },
+    {
+      "name": "auth_status_format",
+      "value": "Status: %1$s"
+    },
+    {
+      "name": "auth_tdlib_subtitle_unknown",
+      "value": "TDLib --"
+    },
+    {
+      "name": "auth_tdlib_subtitle_format",
+      "value": "TDLib %1$s"
+    },
+    {
+      "name": "index_app_title",
+      "value": "Telegram4Watch"
+    },
+    {
+      "name": "index_info_session_active_opening_profile",
+      "value": "Session active. Opening profile..."
+    },
+    {
+      "name": "index_info_session_closed_restarting_authorization",
+      "value": "Session closed. Restarting authorization..."
+    },
+    {
+      "name": "index_info_preparing_telegram_authorization",
+      "value": "Preparing Telegram authorization..."
+    },
+    {
+      "name": "index_info_choose_login_method",
+      "value": "Choose login method."
+    },
+    {
+      "name": "index_info_phone_continue",
+      "value": "Phone login already started. Continue with Phone Number path."
+    },
+    {
+      "name": "index_info_qr_continue",
+      "value": "QR login already started. Continue with QR path."
+    },
+    {
+      "name": "index_info_password_required",
+      "value": "Two-factor password is required. This screen is not implemented yet."
+    },
+    {
+      "name": "index_info_choose_next_action",
+      "value": "Choose next action."
+    },
+    {
+      "name": "index_info_starting_tdlib_bootstrap",
+      "value": "Starting TDLib bootstrap..."
+    },
+    {
+      "name": "index_info_bootstrap_failed",
+      "value": "Bootstrap failed."
+    },
+    {
+      "name": "index_action_qr_login",
+      "value": "Login with QR Code"
+    },
+    {
+      "name": "index_action_phone_login",
+      "value": "Login with Phone Number"
+    },
+    {
+      "name": "qr_login_title",
+      "value": "QR Login"
+    },
+    {
+      "name": "qr_login_error_title",
+      "value": "QR error"
+    },
+    {
+      "name": "qr_login_instruction",
+      "value": "In Telegram on phone:\nSettings -> Devices -> Scan QR."
+    },
+    {
+      "name": "qr_login_info_preparing",
+      "value": "Preparing QR login..."
+    },
+    {
+      "name": "qr_login_info_authorization_complete",
+      "value": "Authorization complete. Opening profile..."
+    },
+    {
+      "name": "qr_login_info_requesting_link",
+      "value": "Requesting QR login link..."
+    },
+    {
+      "name": "qr_login_info_waiting_link",
+      "value": "Waiting for QR link from Telegram..."
+    },
+    {
+      "name": "qr_login_info_preparing_service",
+      "value": "Preparing authorization service..."
+    },
+    {
+      "name": "qr_login_info_qr_may_be_expired_format",
+      "value": "QR may be expired (%1$ss). Wait for refresh."
+    },
+    {
+      "name": "qr_login_info_qr_refreshed_format",
+      "value": "QR refreshed %1$ss ago."
+    },
+    {
+      "name": "qr_login_error_session_closed",
+      "value": "Authorization session is closed."
+    },
+    {
+      "name": "qr_login_error_wait_code",
+      "value": "Current flow expects phone verification code, not QR."
+    },
+    {
+      "name": "qr_login_error_password_required",
+      "value": "Two-factor password is required. QR screen cannot continue this step."
+    },
+    {
+      "name": "qr_login_error_unsupported_state",
+      "value": "Unsupported authorization state for QR login."
+    },
+    {
+      "name": "qr_login_error_request_link",
+      "value": "Cannot request QR link in current state."
+    },
+    {
+      "name": "qr_login_token_unavailable",
+      "value": "token: unavailable"
+    },
+    {
+      "name": "phone_login_title",
+      "value": "Phone login"
+    },
+    {
+      "name": "phone_login_label",
+      "value": "Phone number"
+    },
+    {
+      "name": "phone_login_placeholder",
+      "value": "+48123456789"
+    },
+    {
+      "name": "phone_login_error_title",
+      "value": "Phone login error"
+    },
+    {
+      "name": "phone_login_submit",
+      "value": "Send code"
+    },
+    {
+      "name": "phone_login_info_preparing",
+      "value": "Preparing phone login..."
+    },
+    {
+      "name": "phone_login_info_authorization_complete",
+      "value": "Authorization complete. Opening profile..."
+    },
+    {
+      "name": "phone_login_info_enter_number",
+      "value": "Enter phone number with country prefix."
+    },
+    {
+      "name": "phone_login_info_code_required_opening",
+      "value": "Code verification required. Opening code screen..."
+    },
+    {
+      "name": "phone_login_info_preparing_service",
+      "value": "Preparing authorization service..."
+    },
+    {
+      "name": "phone_login_info_sending_number",
+      "value": "Sending phone number..."
+    },
+    {
+      "name": "phone_login_error_flow_qr",
+      "value": "Current authorization flow expects QR confirmation."
+    },
+    {
+      "name": "phone_login_error_password_required",
+      "value": "Two-factor password is required. Phone screen cannot continue this step."
+    },
+    {
+      "name": "phone_login_error_session_closed",
+      "value": "Authorization session is closed."
+    },
+    {
+      "name": "phone_login_error_unsupported_state",
+      "value": "Unsupported authorization state for phone login."
+    },
+    {
+      "name": "phone_login_error_input_unexpected",
+      "value": "Phone input is not expected in current authorization state."
+    },
+    {
+      "name": "phone_login_error_enter_number_example",
+      "value": "Enter phone number with country prefix, for example +48123456789."
+    },
+    {
+      "name": "phone_login_error_invalid",
+      "value": "Phone number is invalid. Use country prefix, for example +48123456789."
+    },
+    {
+      "name": "phone_login_error_banned",
+      "value": "This phone number is banned by Telegram."
+    },
+    {
+      "name": "phone_login_error_flood",
+      "value": "Too many attempts. Try again later."
+    },
+    {
+      "name": "phone_login_error_rejected_format",
+      "value": "Phone number was rejected: %1$s."
+    },
+    {
+      "name": "phone_login_error_rejected_code_format",
+      "value": "Phone number was rejected (error %1$d)."
+    },
+    {
+      "name": "code_login_title",
+      "value": "Code login"
+    },
+    {
+      "name": "code_login_label",
+      "value": "Login code"
+    },
+    {
+      "name": "code_login_placeholder",
+      "value": "Code"
+    },
+    {
+      "name": "code_login_error_title",
+      "value": "Code login error"
+    },
+    {
+      "name": "code_login_submit",
+      "value": "Confirm"
+    },
+    {
+      "name": "code_login_info_preparing",
+      "value": "Preparing code verification..."
+    },
+    {
+      "name": "code_login_info_authorization_complete",
+      "value": "Authorization complete. Opening profile..."
+    },
+    {
+      "name": "code_login_info_enter_code",
+      "value": "Enter the code received in Telegram or SMS."
+    },
+    {
+      "name": "code_login_info_phone_required_opening",
+      "value": "Phone number is required again. Opening phone screen..."
+    },
+    {
+      "name": "code_login_info_preparing_service",
+      "value": "Preparing authorization service..."
+    },
+    {
+      "name": "code_login_info_verifying",
+      "value": "Verifying code..."
+    },
+    {
+      "name": "code_login_error_flow_qr",
+      "value": "Current authorization flow expects QR confirmation."
+    },
+    {
+      "name": "code_login_error_password_required",
+      "value": "Two-factor password is required. Code screen cannot continue this step."
+    },
+    {
+      "name": "code_login_error_session_closed",
+      "value": "Authorization session is closed."
+    },
+    {
+      "name": "code_login_error_unsupported_state",
+      "value": "Unsupported authorization state for code login."
+    },
+    {
+      "name": "code_login_error_input_unexpected",
+      "value": "Code input is not expected in current authorization state."
+    },
+    {
+      "name": "code_login_error_enter_code",
+      "value": "Enter the login code from Telegram or SMS."
+    },
+    {
+      "name": "code_login_error_invalid",
+      "value": "Invalid login code. Check the code and try again."
+    },
+    {
+      "name": "code_login_error_expired",
+      "value": "Login code expired. Request a new one."
+    },
+    {
+      "name": "code_login_error_empty",
+      "value": "Login code is empty."
+    },
+    {
+      "name": "code_login_error_failed_format",
+      "value": "Code verification failed: %1$s."
+    },
+    {
+      "name": "code_login_error_failed_code_format",
+      "value": "Code verification failed (error %1$d)."
+    },
+    {
+      "name": "logout_title",
+      "value": "Logout"
+    },
+    {
+      "name": "logout_error_title",
+      "value": "Logout error"
+    },
+    {
+      "name": "logout_request",
+      "value": "Request logout"
+    },
+    {
+      "name": "logout_confirm_title",
+      "value": "Logout?"
+    },
+    {
+      "name": "logout_confirm_message",
+      "value": "Do you want to logout from current session?"
+    },
+    {
+      "name": "logout_confirm_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "logout_confirm_confirm",
+      "value": "Logout"
+    },
+    {
+      "name": "logout_info_isolated",
+      "value": "Logout flow is isolated on this screen."
+    },
+    {
+      "name": "logout_info_active",
+      "value": "Session is active. You can request logout."
+    },
+    {
+      "name": "logout_info_in_progress",
+      "value": "Logout is in progress..."
+    },
+    {
+      "name": "logout_info_no_active",
+      "value": "No active session to logout."
+    },
+    {
+      "name": "logout_info_waiting_service",
+      "value": "Waiting for authorization service..."
+    },
+    {
+      "name": "logout_info_complete",
+      "value": "Logout complete. Returning to authorization..."
+    },
+    {
+      "name": "logout_info_requested",
+      "value": "Logout requested..."
+    },
+    {
+      "name": "logout_error_unsupported_state",
+      "value": "Unsupported authorization state for logout."
+    },
+    {
+      "name": "profile_title",
+      "value": "Profile"
+    },
+    {
+      "name": "profile_action_contacts",
+      "value": "Contacts"
+    },
+    {
+      "name": "profile_action_chats",
+      "value": "Chats"
+    },
+    {
+      "name": "user_profile_action_chat",
+      "value": "Chat"
+    },
+    {
+      "name": "user_profile_action_call",
+      "value": "Call"
+    },
+    {
+      "name": "profile_action_logout",
+      "value": "Logout"
+    },
+    {
+      "name": "profile_field_name",
+      "value": "Name and surname"
+    },
+    {
+      "name": "profile_field_username",
+      "value": "Username"
+    },
+    {
+      "name": "profile_field_phone",
+      "value": "Phone"
+    },
+    {
+      "name": "profile_field_id",
+      "value": "ID"
+    },
+    {
+      "name": "chats_title",
+      "value": "Chats"
+    },
+    {
+      "name": "chats_loading",
+      "value": "Loading chats..."
+    },
+    {
+      "name": "chats_empty",
+      "value": "No chats. Pull down to refresh."
+    },
+    {
+      "name": "contacts_title",
+      "value": "Contacts"
+    },
+    {
+      "name": "contacts_loading",
+      "value": "Loading contacts..."
+    },
+    {
+      "name": "contacts_empty",
+      "value": "No contacts. Pull down to refresh."
+    },
+    {
+      "name": "contacts_status_online",
+      "value": "online"
+    },
+    {
+      "name": "contacts_status_last_seen",
+      "value": "last seen %1$s"
+    },
+    {
+      "name": "contacts_status_recently",
+      "value": "last seen recently"
+    },
+    {
+      "name": "contacts_status_last_week",
+      "value": "last seen within a week"
+    },
+    {
+      "name": "contacts_status_last_month",
+      "value": "last seen within a month"
+    },
+    {
+      "name": "chat_details_title",
+      "value": "Chat"
+    },
+    {
+      "name": "chat_details_loading",
+      "value": "Loading messages..."
+    },
+    {
+      "name": "chat_details_empty",
+      "value": "No messages."
+    },
+    {
+      "name": "chat_details_no_older_history",
+      "value": "No earlier messages."
+    },
+    {
+      "name": "chat_message_voice_note_loading",
+      "value": "Wczytywanie"
+    },
+    {
+      "name": "chat_message_voice_note_error",
+      "value": "Playback error"
+    },
+    {
+      "name": "chat_message_voice_note_fallback",
+      "value": "[voice note]"
+    },
+    {
+      "name": "chat_message_voice_note_missing_file",
+      "value": "Voice note file path is unavailable."
+    },
+    {
+      "name": "chat_message_voice_note_playback_failed",
+      "value": "Voice note playback failed."
+    },
+    {
+      "name": "compose_title",
+      "value": "Compose"
+    },
+    {
+      "name": "message_recorder_title",
+      "value": "Voice Note"
+    },
+    {
+      "name": "message_recorder_phase_idle",
+      "value": "Ready"
+    },
+    {
+      "name": "message_recorder_phase_requesting_permission",
+      "value": "Permission"
+    },
+    {
+      "name": "message_recorder_phase_recording",
+      "value": "Recording"
+    },
+    {
+      "name": "message_recorder_phase_stopping",
+      "value": "Finalizing"
+    },
+    {
+      "name": "message_recorder_phase_sending",
+      "value": "Sending"
+    },
+    {
+      "name": "message_recorder_phase_error",
+      "value": "Error"
+    },
+    {
+      "name": "message_recorder_timer_caption",
+      "value": "Voice note"
+    },
+    {
+      "name": "message_recorder_status_idle",
+      "value": "Tap Start to record a voice note for this chat."
+    },
+    {
+      "name": "message_recorder_status_requesting_permission",
+      "value": "Requesting microphone access..."
+    },
+    {
+      "name": "message_recorder_status_recording",
+      "value": "Recording voice note..."
+    },
+    {
+      "name": "message_recorder_status_stopping",
+      "value": "Finalizing voice note..."
+    },
+    {
+      "name": "message_recorder_status_sending",
+      "value": "Sending voice note..."
+    },
+    {
+      "name": "message_recorder_status_error",
+      "value": "Voice note action failed."
+    },
+    {
+      "name": "message_recorder_status_permission_denied",
+      "value": "Microphone access is required to record a voice note."
+    },
+    {
+      "name": "message_recorder_error_permission_denied",
+      "value": "Microphone permission was denied."
+    },
+    {
+      "name": "message_recorder_error_request_failed",
+      "value": "Microphone permission request failed."
+    },
+    {
+      "name": "message_recorder_error_recording_failed",
+      "value": "Voice note recording failed."
+    },
+    {
+      "name": "message_recorder_error_send_failed",
+      "value": "Voice note send failed."
+    },
+    {
+      "name": "message_recorder_error_start_failed",
+      "value": "Voice note recorder failed to start."
+    },
+    {
+      "name": "message_recorder_error_send_unavailable",
+      "value": "Cannot send voice note right now."
+    },
+    {
+      "name": "message_recorder_action_start",
+      "value": "Start"
+    },
+    {
+      "name": "message_recorder_action_waiting",
+      "value": "Waiting..."
+    },
+    {
+      "name": "message_recorder_action_stop_send",
+      "value": "Stop + Send"
+    },
+    {
+      "name": "message_recorder_action_send",
+      "value": "Send"
+    },
+    {
+      "name": "message_recorder_action_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "message_recorder_action_continue",
+      "value": "Continue"
+    },
+    {
+      "name": "message_recorder_action_finish",
+      "value": "Finish"
+    },
+    {
+      "name": "message_recorder_action_reset",
+      "value": "Reset"
+    },
+    {
+      "name": "message_recorder_action_open_settings",
+      "value": "Open Settings"
+    },
+    {
+      "name": "message_recorder_action_retry_send",
+      "value": "Retry Send"
+    },
+    {
+      "name": "compose_error_send_unavailable",
+      "value": "Cannot send right now."
+    },
+    {
+      "name": "compose_error_enter_message",
+      "value": "Enter a message."
+    },
+    {
+      "name": "compose_error_chat_unavailable",
+      "value": "Chat unavailable."
+    },
+    {
+      "name": "compose_error_send_failed",
+      "value": "Send failed. Try again."
+    },
+    {
+      "name": "message_composer_placeholder",
+      "value": "Type a message"
+    },
+    {
+      "name": "chat_list_item_title_missing",
+      "value": "Untitled"
+    },
+    {
+      "name": "chat_message_loading_emoji",
+      "value": "Loading emoji..."
+    },
+    {
+      "name": "chat_message_loading_gif",
+      "value": "Loading GIF..."
+    },
+    {
+      "name": "chat_message_loading_video",
+      "value": "Loading video..."
+    },
+    {
+      "name": "chat_message_loading_sticker",
+      "value": "Loading sticker..."
+    },
+    {
+      "name": "chat_message_loading_image",
+      "value": "Loading image..."
+    },
+    {
+      "name": "chat_message_badge_emoji",
+      "value": "EMJ"
+    },
+    {
+      "name": "chat_message_badge_gif",
+      "value": "GIF"
+    },
+    {
+      "name": "chat_message_badge_sticker",
+      "value": "ST"
+    },
+    {
+      "name": "chat_message_badge_video",
+      "value": "VID"
+    },
+    {
+      "name": "chat_service_basic_group_created",
+      "value": "Group created"
+    },
+    {
+      "name": "chat_service_basic_group_created_format",
+      "value": "Group \"%1$s\" created"
+    },
+    {
+      "name": "chat_service_supergroup_created",
+      "value": "Channel or supergroup created"
+    },
+    {
+      "name": "chat_service_supergroup_created_format",
+      "value": "Channel or supergroup \"%1$s\" created"
+    },
+    {
+      "name": "chat_service_title_changed",
+      "value": "Title changed"
+    },
+    {
+      "name": "chat_service_title_changed_format",
+      "value": "Title changed to \"%1$s\""
+    },
+    {
+      "name": "chat_service_photo_changed",
+      "value": "Group photo changed"
+    },
+    {
+      "name": "chat_service_member_added_single",
+      "value": "Added 1 member"
+    },
+    {
+      "name": "chat_service_members_added_multiple",
+      "value": "Added new members"
+    },
+    {
+      "name": "chat_service_joined_by_link",
+      "value": "Joined via invite link"
+    },
+    {
+      "name": "chat_service_user_left",
+      "value": "User left the group"
+    },
+    {
+      "name": "chat_service_user_removed",
+      "value": "User was removed from the group"
+    },
+    {
+      "name": "chat_service_upgraded_to_supergroup",
+      "value": "Group upgraded to supergroup"
+    },
+    {
+      "name": "chat_service_upgraded_from_group",
+      "value": "Supergroup created from earlier group"
+    },
+    {
+      "name": "chat_service_upgraded_from_group_format",
+      "value": "Supergroup created from group \"%1$s\""
+    },
+    {
+      "name": "chat_service_message_pinned",
+      "value": "Message pinned"
+    },
+    {
+      "name": "chat_service_screenshot_taken",
+      "value": "Screenshot taken"
+    },
+    {
+      "name": "chat_service_contact_registered",
+      "value": "Joined Telegram"
+    },
+    {
+      "name": "chat_service_voice_call",
+      "value": "Voice call"
+    },
+    {
+      "name": "chat_service_voice_call_duration_format",
+      "value": "Voice call (%1$s)"
+    },
+    {
+      "name": "chat_service_voice_call_missed",
+      "value": "Missed voice call"
+    },
+    {
+      "name": "chat_service_voice_call_declined",
+      "value": "Declined voice call"
+    },
+    {
+      "name": "chat_service_video_call",
+      "value": "Video call"
+    },
+    {
+      "name": "chat_service_video_call_duration_format",
+      "value": "Video call (%1$s)"
+    },
+    {
+      "name": "chat_service_video_call_missed",
+      "value": "Missed video call"
+    },
+    {
+      "name": "chat_service_video_call_declined",
+      "value": "Declined video call"
+    },
+    {
+      "name": "call_notification_incoming_title",
+      "value": "Incoming call"
+    },
+    {
+      "name": "call_notification_ongoing_title",
+      "value": "Ongoing call"
+    },
+    {
+      "name": "call_notification_action_answer",
+      "value": "Answer"
+    },
+    {
+      "name": "call_notification_action_reject",
+      "value": "Reject"
+    },
+    {
+      "name": "call_notification_action_answer_on_phone",
+      "value": "Answer on phone"
+    },
+    {
+      "name": "call_screen_status_answering",
+      "value": "Answering..."
+    },
+    {
+      "name": "call_screen_status_calling",
+      "value": "Calling..."
+    },
+    {
+      "name": "call_screen_status_ringing",
+      "value": "Ringing..."
+    },
+    {
+      "name": "call_screen_status_connecting",
+      "value": "Connecting..."
+    },
+    {
+      "name": "call_screen_status_connected",
+      "value": "Connected"
+    },
+    {
+      "name": "call_screen_status_ending",
+      "value": "Ending..."
+    },
+    {
+      "name": "call_screen_status_ended",
+      "value": "Call ended"
+    },
+    {
+      "name": "call_screen_status_failed",
+      "value": "Call failed"
+    },
+    {
+      "name": "call_screen_status_invalid_call",
+      "value": "Invalid call"
+    },
+    {
+      "name": "call_screen_status_invalid_user",
+      "value": "Invalid contact"
+    },
+    {
+      "name": "call_screen_status_answer_failed",
+      "value": "Could not answer"
+    },
+    {
+      "name": "call_screen_status_create_failed",
+      "value": "Could not start call"
+    },
+    {
+      "name": "call_screen_action_mute",
+      "value": "Mute"
+    },
+    {
+      "name": "call_screen_action_unmute",
+      "value": "Unmute"
+    },
+    {
+      "name": "call_screen_action_answer",
+      "value": "Answer"
+    },
+    {
+      "name": "call_screen_action_decline",
+      "value": "Decline"
+    },
+    {
+      "name": "call_screen_action_end",
+      "value": "End call"
+    },
+    {
+      "name": "call_screen_status_incoming_ringing",
+      "value": "Incoming call..."
+    },
+    {
+      "name": "chat_call_event_title_outgoing",
+      "value": "Outgoing Call"
+    },
+    {
+      "name": "chat_call_event_title_incoming",
+      "value": "Incoming Call"
+    },
+    {
+      "name": "chat_call_event_title_missed",
+      "value": "Missed Call"
+    },
+    {
+      "name": "chat_call_event_title_declined",
+      "value": "Declined Call"
+    },
+    {
+      "name": "chat_call_event_title_cancelled",
+      "value": "Cancelled Call"
+    },
+    {
+      "name": "chat_call_event_title_outgoing_video",
+      "value": "Outgoing Video Call"
+    },
+    {
+      "name": "chat_call_event_title_incoming_video",
+      "value": "Incoming Video Call"
+    },
+    {
+      "name": "chat_call_event_title_missed_video",
+      "value": "Missed Video Call"
+    },
+    {
+      "name": "chat_call_event_title_declined_video",
+      "value": "Declined Video Call"
+    },
+    {
+      "name": "chat_call_event_title_cancelled_video",
+      "value": "Cancelled Video Call"
+    },
+    {
+      "name": "chat_call_event_duration_seconds_format",
+      "value": "%d s"
+    },
+    {
+      "name": "chat_call_event_duration_minutes_seconds_format",
+      "value": "%d min %d s"
+    },
+    {
+      "name": "chat_call_event_time_with_duration_format",
+      "value": "%s, %s"
+    },
+    {
+      "name": "chat_service_voice_call_cancelled",
+      "value": "Cancelled voice call"
+    },
+    {
+      "name": "chat_service_video_call_cancelled",
+      "value": "Cancelled video call"
+    },
+    {
+      "name": "chat_preview_call_outgoing",
+      "value": "Outgoing Call"
+    },
+    {
+      "name": "chat_preview_call_incoming",
+      "value": "Incoming Call"
+    },
+    {
+      "name": "chat_preview_call_outgoing_seconds_format",
+      "value": "Outgoing Call (%d s)"
+    },
+    {
+      "name": "chat_preview_call_incoming_seconds_format",
+      "value": "Incoming Call (%d s)"
+    },
+    {
+      "name": "chat_preview_call_outgoing_minutes_seconds_format",
+      "value": "Outgoing Call (%d min %d s)"
+    },
+    {
+      "name": "chat_preview_call_incoming_minutes_seconds_format",
+      "value": "Incoming Call (%d min %d s)"
+    },
+    {
+      "name": "chat_preview_call_cancelled",
+      "value": "Cancelled Call"
+    },
+    {
+      "name": "chat_preview_call_missed",
+      "value": "Missed Call"
+    },
+    {
+      "name": "chat_preview_call_declined",
+      "value": "Declined Call"
+    },
+    {
+      "name": "chat_preview_outgoing_photo",
+      "value": "You sent a photo"
+    },
+    {
+      "name": "chat_preview_incoming_photo",
+      "value": "You received a photo"
+    },
+    {
+      "name": "chat_preview_outgoing_animation",
+      "value": "You sent a GIF"
+    },
+    {
+      "name": "chat_preview_incoming_animation",
+      "value": "You received a GIF"
+    },
+    {
+      "name": "chat_preview_outgoing_video",
+      "value": "You sent a video"
+    },
+    {
+      "name": "chat_preview_incoming_video",
+      "value": "You received a video"
+    },
+    {
+      "name": "chat_preview_outgoing_video_note",
+      "value": "You sent a video message"
+    },
+    {
+      "name": "chat_preview_incoming_video_note",
+      "value": "You received a video message"
+    },
+    {
+      "name": "chat_preview_outgoing_voice_note",
+      "value": "You sent a voice message"
+    },
+    {
+      "name": "chat_preview_incoming_voice_note",
+      "value": "You received a voice message"
+    },
+    {
+      "name": "chat_preview_outgoing_sticker",
+      "value": "You sent a sticker"
+    },
+    {
+      "name": "chat_preview_incoming_sticker",
+      "value": "You received a sticker"
+    },
+    {
+      "name": "chat_preview_outgoing_animated_emoji",
+      "value": "You sent an emoji"
+    },
+    {
+      "name": "chat_preview_incoming_animated_emoji",
+      "value": "You received an emoji"
+    },
+    {
+      "name": "profile_action_debug_mock_incoming",
+      "value": "Test CallScreen: incoming"
+    },
+    {
+      "name": "profile_action_debug_mock_connected",
+      "value": "Test CallScreen: connected"
+    },
+    {
+      "name": "profile_action_debug_mock_outgoing",
+      "value": "Test CallScreen: outgoing"
+    },
+    {
+      "name": "chat_notification_action_open",
+      "value": "Open chat"
+    },
+    {
+      "name": "quick_reply_template_ok",
+      "value": "OK"
+    },
+    {
+      "name": "quick_reply_template_thumbs_up",
+      "value": "👍"
+    },
+    {
+      "name": "quick_reply_template_smile",
+      "value": "🙂"
+    },
+    {
+      "name": "quick_reply_template_call_back",
+      "value": "I'll call you back"
+    },
+    {
+      "name": "quick_reply_template_on_my_way",
+      "value": "On my way"
+    },
+    {
+      "name": "quick_reply_template_cant_talk",
+      "value": "Can't talk right now"
+    },
+    {
+      "name": "quick_reply_action_label",
+      "value": "Reply"
+    },
+    {
+      "name": "quick_reply_title",
+      "value": "Quick reply"
+    },
+    {
+      "name": "quick_reply_loading",
+      "value": "Loading replies..."
+    },
+    {
+      "name": "quick_reply_empty",
+      "value": "No quick replies"
+    },
+    {
+      "name": "quick_reply_sending",
+      "value": "Sending..."
+    },
+    {
+      "name": "quick_reply_sent",
+      "value": "Sent"
+    },
+    {
+      "name": "quick_reply_failed",
+      "value": "Couldn't send"
+    },
+    {
+      "name": "quick_reply_network_queued",
+      "value": "Network problem. Message queued."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "app": {
+    "bundleName": "com.ostc.tele4watch",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon_tele_4_watch",
+    "label": "$string:app_name"
+  }
+}

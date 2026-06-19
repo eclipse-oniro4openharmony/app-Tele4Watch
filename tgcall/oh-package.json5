@@ -1,0 +1,9 @@
+{
+  "name": "tgcall",
+  "version": "1.0.0",
+  "description": "Native Telegram call signaling module for Telegram Watch.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "",
+  "dependencies": {}
+}

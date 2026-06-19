@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "Module test description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "Test ability description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "TestAbility"
+    }
+  ]
+}

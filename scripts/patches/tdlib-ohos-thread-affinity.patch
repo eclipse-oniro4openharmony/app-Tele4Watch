@@ -1,0 +1,13 @@
+diff --git a/tdutils/td/utils/port/detail/ThreadPthread.h b/tdutils/td/utils/port/detail/ThreadPthread.h
+index 88ff322..743b758 100644
+--- a/tdutils/td/utils/port/detail/ThreadPthread.h
++++ b/tdutils/td/utils/port/detail/ThreadPthread.h
+@@ -28,7 +28,7 @@
+ #endif
+ #include <sys/types.h>
+ 
+-#if TD_LINUX || TD_FREEBSD || TD_NETBSD
++#if (TD_LINUX || TD_FREEBSD || TD_NETBSD) && !defined(__OHOS__)
+ #define TD_HAVE_THREAD_AFFINITY 1
+ #endif
+ 
